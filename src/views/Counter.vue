@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import useCounter from '@/composables/useCounter.js'
 
 export default {
   // Elementos que van fuera del setup(), todos los demás elementos se desarrollan dentro de este método
@@ -16,21 +16,10 @@ export default {
   emits: [],
   
   setup() {
-    const counter = ref(5)
-
-    /*const increase = () => {
-      counter.value++
-    }
-
-    const decrease = () => {
-      counter.value--
-    }*/
+    const {counter, increase, decrease} = useCounter()
 
     return {
-      counter,
-
-      increase: () => counter.value++,
-      decrease: () => counter.value--,
+      counter, increase, decrease
     }
   }
 }
