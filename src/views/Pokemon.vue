@@ -5,13 +5,12 @@
   <template v-else>
     <h2>{{ pokemon.name }}</h2>
     <img :src="pokemon.sprites.front_default" alt="pokemon.name">
-    <h2></h2>
-    <router-link :to="{name: 'pokemon-search'}">Regresar</router-link>
+    <h4><router-link :to="{name: 'pokemon-search'}">Regresar</router-link></h4>
   </template>
 </template>
 
 <script>
-import { useRoute } from 'vue-router';
+import { useRoute, onBeforeRouteLeave } from 'vue-router';
 import usePokemon from '@/composables/usePokemon';
 import { watch } from 'vue';
 
@@ -27,6 +26,12 @@ export default {
         searchPokemon(route.params.id)
       }
     )
+
+    onBeforeRouteLeave(() => {
+      const answer = window.confirm('¿Está seguro que quiere salir?')
+      
+      if(!answer) return false
+    })
 
     return {
       error,
