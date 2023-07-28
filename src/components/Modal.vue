@@ -6,6 +6,8 @@
             <slot name="body" />
             <slot name="footer" />
 
+            <slot name="exposed" :newTitle="newTitle" />
+
             <!-- <slot>
                 <div class="center">
                     Esto aparecerá si no tenemos contenido
@@ -17,9 +19,14 @@
 
 <script>
 export default {
-    emits: ['on-close'],
-    setup(props, context) {
+    props: ['title'],
 
+    emits: ['on-close'],
+
+    setup(props, context) {
+        return {
+            newTitle: props.title.toUpperCase()
+        }
     }
 }
 </script>
