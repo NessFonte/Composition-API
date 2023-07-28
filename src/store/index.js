@@ -10,17 +10,27 @@ export default createStore({
       {id: '5', text: 'Conseguir nuevos secuaces competentes', completed: false},
     ]
   },
-  getters: {
-  },
+
   mutations: {
   },
+
   actions: {
   },
+
   getters: {
     pendingTodos(state, getters, rootState) {
       return state.todos.filter(todo => !todo.completed)
+    },
+
+    allTodos(state, getters, rootState) {
+      return state.todos
+    },
+
+    completedTodos(state, getters, rootState) {
+      return state.todos.filter(todo => todo.completed)
     }
   },
+
   modules: {
   },
 })
